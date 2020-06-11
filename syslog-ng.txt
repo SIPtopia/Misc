@@ -1,0 +1,25 @@
+############################   Sources     ###############################
+
+source s_ANY {
+    network(ip(0.0.0.0) port(514) transport("tcp"));
+    network(ip(0.0.0.0) port(514) transport("udp"));
+};
+
+##########################   Destinations     ###############################
+
+destination d_Any
+{
+file
+(
+/data/splunk_syslog/Any/$HOST-$YEAR$MONTH$DAY.log
+perm(0755)
+create_dirs(yes)
+owner("splunk")
+group("splunk")
+dir_owner("splunk")
+dir_group("splunk")
+);
+};
+
+
+
